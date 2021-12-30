@@ -1,0 +1,11 @@
+const grpc = require("grpc");
+const path = require("path");
+const PROTO_PATH = path.join(__dirname, "../notes.proto");
+const NoteService = grpc.load(PROTO_PATH).NoteService;
+
+const client = new NoteService(
+  "localhost:50051",
+  grpc.credentials.createInsecure()
+);
+
+module.exports = client;
